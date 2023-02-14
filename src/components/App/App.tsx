@@ -1,12 +1,12 @@
 import "./App.css";
-import Task from "./components/Task/Task";
+import Layout from "../Layout/Layout";
 
-function App() {
+const App = (): JSX.Element => {
   return (
     <div className="App">
-      <Task />
+      <Layout />
     </div>
   );
-}
+};
 
 export default App;
