@@ -1,8 +1,9 @@
-import "./TaskList.css";
+import "./TaskListStyled.tsx";
 import TaskCard from "../TaskCard/TaskCard";
 import useApi from "../../hooks/useApi";
 import { useAppSelector } from "../../store/hooks";
 import { useEffect } from "react";
+import TaskListStyled from "./TaskListStyled";
 
 const TaskList = (): JSX.Element => {
   const { loadTasks } = useApi();
@@ -16,7 +17,7 @@ const TaskList = (): JSX.Element => {
   }, [loadTasks]);
 
   return (
-    <ul className="tasklist">
+    <TaskListStyled className="tasklist">
       {list.map((item, position) => (
         <TaskCard
           task={item}
@@ -24,7 +25,7 @@ const TaskList = (): JSX.Element => {
           key={Math.floor(Math.random() * 10000)}
         />
       ))}
-    </ul>
+    </TaskListStyled>
   );
 };
 

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import useApi from "../../hooks/useApi";
-import "./Form.css";
 import FormStyled from "./FormStyled";
 
 const Form = (): JSX.Element => {
@@ -28,7 +27,6 @@ const Form = (): JSX.Element => {
   return (
     <>
       <FormStyled className="form" onSubmit={handleSubmit}>
-        <label className="form__label">Add a task</label>
         <input
           onChange={handleChange}
           placeholder="Write a new task"
@@ -37,7 +35,7 @@ const Form = (): JSX.Element => {
           type="text"
         />
         <button type="submit" className="form__button">
-          Add
+          Create
         </button>
       </FormStyled>
     </>
