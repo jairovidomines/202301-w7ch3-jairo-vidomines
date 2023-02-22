@@ -5,6 +5,7 @@ import { store } from "./store";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
