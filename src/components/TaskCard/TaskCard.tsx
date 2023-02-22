@@ -13,7 +13,11 @@ const TaskCard = ({ task: { name, id } }: TaskCardProps): JSX.Element => {
   return (
     <TaskCardStyled className="task">
       <span className="task__to-do">{name}</span>
-      <button className="task__delete" onClick={() => deleteTasks(id)}>
+      <button
+        className="task__delete"
+        onClick={() => deleteTasks(id)}
+        aria-label="delete-task"
+      >
         <i className="fa-solid fa-trash"></i>
       </button>
     </TaskCardStyled>
