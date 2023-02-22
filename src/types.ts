@@ -3,3 +3,5 @@ export interface taskStructure {
   name: string;
   isDone: boolean;
 }
+
+export type tasksStructure = taskStructure[];
