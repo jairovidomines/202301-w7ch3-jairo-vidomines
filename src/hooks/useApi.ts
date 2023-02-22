@@ -1,5 +1,8 @@
 import { useCallback } from "react";
-import { loadTasksActionCreator } from "../store/features/tasksSlice";
+import {
+  loadTasksActionCreator,
+  removeTasksActionCreator,
+} from "../store/features/tasksSlice";
 import { useAppDispatch } from "../store/hooks";
 import { tasksStructure } from "../types";
 
@@ -16,7 +19,21 @@ const useApi = () => {
     } catch (error) {}
   }, [apiUrl, dispatch]);
 
-  return loadTasks;
+  const deleteTasks = useCallback(
+    async (id: number) => {
+      try {
+        await fetch(`${apiUrl}/${id}`, {
+          method: "DELETE",
+        });
+        dispatch(removeTasksActionCreator(id));
+      } catch (error) {
+        return (error as Error).message;
+      }
+    },
+    [apiUrl, dispatch]
+  );
+
+  return { loadTasks, deleteTasks };
 };
 
 export default useApi;
