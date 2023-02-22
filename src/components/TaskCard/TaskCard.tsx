@@ -1,9 +1,15 @@
+import { taskStructure } from "../../types";
 import "./TaskCard.css";
 
-const TaskCard = (): JSX.Element => {
+interface TaskCardProps {
+  task: taskStructure;
+}
+
+const TaskCard = ({ task: { name, isDone } }: TaskCardProps): JSX.Element => {
   return (
     <ul className="task">
-      <span className="task__to-do">Clean the bathroom</span>
+      <span className="task__to-do">{name}</span>
+      <span>{isDone}</span>
     </ul>
   );
 };

@@ -1,11 +1,26 @@
 import "./TaskList.css";
 import TaskCard from "../TaskCard/TaskCard";
+import useApi from "../../hooks/useApi";
+import { useAppSelector } from "../../store/hooks";
+import { useEffect } from "react";
 
 const TaskList = (): JSX.Element => {
+  const loadTasks = useApi();
+
+  const list = useAppSelector((state) => {
+    return state.tasks;
+  });
+
+  useEffect(() => {
+    loadTasks();
+  }, [loadTasks]);
+
   return (
-    <li className="tasklist">
-      <TaskCard />
-    </li>
+    <ul className="tasklist">
+      {list.map((item) => (
+        <TaskCard task={item} />
+      ))}
+    </ul>
   );
 };
 
