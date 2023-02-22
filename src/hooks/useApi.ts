@@ -1,10 +1,11 @@
 import { useCallback } from "react";
 import {
+  addTasksActionCreator,
   loadTasksActionCreator,
   removeTasksActionCreator,
 } from "../store/features/tasksSlice";
 import { useAppDispatch } from "../store/hooks";
-import { tasksStructure } from "../types";
+import { tasksStructure, taskStructure } from "../types";
 
 const useApi = () => {
   const apiUrl = "https://todo-zkz9.onrender.com/to-do";
@@ -33,7 +34,28 @@ const useApi = () => {
     [apiUrl, dispatch]
   );
 
-  return { loadTasks, deleteTasks };
+  const addTask = async (event: any, task: taskStructure) => {
+    event.preventDefault();
+
+    try {
+      await fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify({
+          id: task.id,
+          name: task.name,
+          isDone: task.isDone,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+    } catch (error) {
+      return (error as Error).message;
+    }
+    dispatch(addTasksActionCreator(task));
+  };
+
+  return { loadTasks, deleteTasks, addTask };
 };
 
 export default useApi;

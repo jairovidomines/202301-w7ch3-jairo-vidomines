@@ -18,7 +18,11 @@ const TaskList = (): JSX.Element => {
   return (
     <ul className="tasklist">
       {list.map((item, position) => (
-        <TaskCard task={item} position={position} />
+        <TaskCard
+          task={item}
+          position={position}
+          key={Math.floor(Math.random() * 10000)}
+        />
       ))}
     </ul>
   );

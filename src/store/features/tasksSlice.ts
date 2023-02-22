@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { tasksStructure } from "../../types";
+import { tasksStructure, taskStructure } from "../../types";
 
 export const initialState = [] as tasksStructure;
 
@@ -14,6 +14,11 @@ const tasksSlice = createSlice({
       currentTasks
         .filter((item) => item.id !== action.payload)
         .map((item, position) => ({ ...item, id: position })),
+
+    addTasks: (currentTasks, action: PayloadAction<taskStructure>) => [
+      ...currentTasks,
+      action.payload,
+    ],
   },
 });
 
@@ -22,4 +27,5 @@ export default tasksSlice;
 export const {
   loadTasks: loadTasksActionCreator,
   removeTasks: removeTasksActionCreator,
+  addTasks: addTasksActionCreator,
 } = tasksSlice.actions;
