@@ -9,9 +9,17 @@ const tasksSlice = createSlice({
   reducers: {
     loadTasks: (currentTasks, action: PayloadAction<tasksStructure>) =>
       (currentTasks = [...action.payload]),
+
+    removeTasks: (currentTasks, action: PayloadAction<number>) =>
+      currentTasks
+        .filter((item) => item.id !== action.payload)
+        .map((item, position) => ({ ...item, id: position })),
   },
 });
 
 export default tasksSlice;
 
-export const { loadTasks: loadTasksActionCreator } = tasksSlice.actions;
+export const {
+  loadTasks: loadTasksActionCreator,
+  removeTasks: removeTasksActionCreator,
+} = tasksSlice.actions;

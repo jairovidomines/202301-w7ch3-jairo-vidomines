@@ -5,7 +5,7 @@ import { useAppSelector } from "../../store/hooks";
 import { useEffect } from "react";
 
 const TaskList = (): JSX.Element => {
-  const loadTasks = useApi();
+  const { loadTasks } = useApi();
 
   const list = useAppSelector((state) => {
     return state.tasks;
@@ -17,8 +17,8 @@ const TaskList = (): JSX.Element => {
 
   return (
     <ul className="tasklist">
-      {list.map((item) => (
-        <TaskCard task={item} />
+      {list.map((item, position) => (
+        <TaskCard task={item} position={position} />
       ))}
     </ul>
   );

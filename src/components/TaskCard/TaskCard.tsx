@@ -1,16 +1,21 @@
+import useApi from "../../hooks/useApi";
 import { taskStructure } from "../../types";
 import "./TaskCard.css";
 
 interface TaskCardProps {
   task: taskStructure;
+  position: number;
 }
 
-const TaskCard = ({ task: { name, isDone } }: TaskCardProps): JSX.Element => {
+const TaskCard = ({ task: { name, id } }: TaskCardProps): JSX.Element => {
+  const { deleteTasks } = useApi();
   return (
-    <ul className="task">
+    <span className="task">
       <span className="task__to-do">{name}</span>
-      <span>{isDone}</span>
-    </ul>
+      <button className="task__delete" onClick={() => deleteTasks(id)}>
+        🗑️
+      </button>
+    </span>
   );
 };
 
